@@ -13,32 +13,13 @@
 </div>
 <figure class="hero-photo"><img src="assets/gari.jpg" alt="BioSense AgRobot Gari during the FlexiGroBots field pilot" fetchpriority="high"><figcaption>BioSense AgRobot Gari · FlexiGroBots field pilot</figcaption></figure>
 </section>
-<nav class="index shell" aria-label="Project index"><a href="#robo-router"><span>01</span> Robo Router</a><a href="#edge"><span>02</span> Edge Robotics</a><a href="#maira"><span>03</span> MAiRA Conveyor</a><a href="#cradle"><span>04</span> CRADLE</a><a href="#winlab"><span>05</span> WINLAB</a></nav>
+<nav class="index shell" aria-label="Project index"><a href="#maira"><span>01</span> MAiRA Conveyor</a><a href="#edge"><span>02</span> Edge Robotics</a><a href="#robo-router"><span>03</span> Robo Router</a><a href="#cradle"><span>04</span> CRADLE</a><a href="#winlab"><span>05</span> WINLAB</a></nav>
 <section class="shell current-project" aria-labelledby="current-project-title">
   <div><p class="label">In progress</p><h2 id="current-project-title">Transformable wheel-leg robot</h2></div>
   <div>
     <p>Our team is developing a transformable wheel-leg robot end to end, from the wheel-leg mechanism, actuators, LiDAR, and motion sensors to the controller that decides when to roll or step over obstacles. We plan to train a world-model-based controller in MuJoCo, deploy it on the physical robot, and use logged sensor and actuator data to adapt it to real-world dynamics. We’ll benchmark the learned controller against a hand-coded switching policy on the same obstacle courses.</p>
     <div class="links"><a href="https://github.com/cemanst/transformable-wheel-leg-robot">Project on GitHub</a></div>
   </div>
-</section>
-<section class="shell project" id="robo-router">
-<div class="project-head"><div><p class="label">BioSense Institute, Novi Sad, Serbia</p><h2>Robo Router</h2></div><div><p>Plan a route for the BioSense FlexiGroBots sampling robot. With a finite battery, lowering estimated travel time helps the robot complete more of its sampling mission.</p><p>I implemented four optimization heuristics and compared them against a Greedy route: adaptive large neighborhood search (ALNS), variable neighborhood search (VNS), ant colony optimization (ACO), and a genetic algorithm (GA).</p><div class="links"><a href="benchmark.html">View benchmark presentation</a><a href="https://github.com/cemanst/robo-router">GitHub</a><a href="https://flexigrobots-h2020.eu/blog/pilot-3-demonstrator-integration-testing-and-deployments">Robot and field pilot</a></div></div></div>
-<div class="benchmark"><div class="benchmark-head"><div><h3>Route optimization benchmark</h3></div><div class="sizes" role="group" aria-label="Number of sampling stops"><button type="button" aria-pressed="true" data-size="10">10</button><button type="button" aria-pressed="false" data-size="50">50</button><button type="button" aria-pressed="false" data-size="75">75</button><button type="button" aria-pressed="false" data-size="100">100</button></div></div>
-<table><caption id="bench-caption">Mean route cost reduction versus the Greedy algorithm</caption><thead><tr><th scope="col">Greedy</th><th scope="col">ALNS</th><th scope="col">VNS</th><th scope="col">ACO</th><th scope="col">GA</th></tr></thead><tbody><tr id="bench-values"><td>0.00%</td><td>6.03%</td><td>6.10%</td><td>6.10%</td><td>6.10%</td></tr></tbody></table>
-<div class="plots"><figure><a id="convergence-link" href="assets/convergence-10.png"><img id="convergence" src="assets/convergence-10.png" alt="Search convergence for five route planners on a 10-stop instance" loading="lazy"></a></figure><figure><a id="routes-link" href="assets/routes-10.png"><img id="routes" src="assets/routes-10.png" alt="Greedy, ALNS, VNS, ACO and GA route maps for the same 10 stops" loading="lazy"></a></figure></div></div>
-</section>
-<section class="shell project" id="edge">
-<div class="project-head">
-  <div><p class="label">ETF Palace of Science, Belgrade, Serbia</p><h2>Edge Robotics</h2></div>
-  <div>
-    <p>I built an end-to-end fruit detection and grasping system for the RB-Kairos mobile manipulator, from RealSense RGB-D images to a physical pick with the Franka Emika FR3 arm.</p>
-    <p>I wrote CUDA GPU kernel code and optimized YOLOv5n inference with TensorRT on the NVIDIA Jetson Nano. I calibrated the camera relative to the arm and combined object detections with depth to estimate each fruit’s 3D position.</p>
-    <p>I connected perception and manipulation through ROS topics and services, then used MoveIt to plan and execute arm motion to the grasp poses. MoveIt handled the inverse kinematics for those pose targets.</p>
-    <p>I’m the first author of <cite>Architecture and Design of an Edge GPU System for Autonomous Perception of Mobile Robots in Precision Agriculture</cite>, published at the 13th IcETRAN conference in 2026.</p>
-    <div class="links"><a href="assets/edge-robotics-icetran-2026.pdf">Read the paper (author PDF)</a><a href="https://www.conf.etran.rs/conference-program/%D1%80%D0%BE-roi-2/">Conference entry</a><a href="https://github.com/cemanst/rbkairos_etf_vision">Vision code</a><a href="https://github.com/cemanst/rbkairos_etf_services">ROS services</a></div>
-  </div>
-</div>
-<div class="video"><iframe loading="lazy" title="Edge Robotics video presentation" src="https://www.youtube-nocookie.com/embed/P250DBi1fgQ" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="small"><a href="https://www.youtube.com/watch?v=P250DBi1fgQ">Watch the presentation on YouTube</a></p>
 </section>
 <section class="shell project" id="maira">
 <div class="project-head">
@@ -56,6 +37,25 @@
   </picture>
   <figcaption>Full pick cycle in MoveIt and RViz</figcaption>
 </figure>
+</section>
+<section class="shell project" id="edge">
+<div class="project-head">
+  <div><p class="label">ETF Palace of Science, Belgrade, Serbia</p><h2>Edge Robotics</h2></div>
+  <div>
+    <p>I built an end-to-end fruit detection and grasping system for the RB-Kairos mobile manipulator, from RealSense RGB-D images to a physical pick with the Franka Emika FR3 arm.</p>
+    <p>I wrote CUDA GPU kernel code and optimized YOLOv5n inference with TensorRT on the NVIDIA Jetson Nano. I calibrated the camera relative to the arm and combined object detections with depth to estimate each fruit’s 3D position.</p>
+    <p>I connected perception and manipulation through ROS topics and services, then used MoveIt to plan and execute arm motion to the grasp poses. MoveIt handled the inverse kinematics for those pose targets.</p>
+    <p>I’m the first author of <cite>Architecture and Design of an Edge GPU System for Autonomous Perception of Mobile Robots in Precision Agriculture</cite>, published at the 13th IcETRAN conference in 2026.</p>
+    <div class="links"><a href="assets/edge-robotics-icetran-2026.pdf">Read the paper (author PDF)</a><a href="https://www.conf.etran.rs/conference-program/%D1%80%D0%BE-roi-2/">Conference entry</a><a href="https://github.com/cemanst/rbkairos_etf_vision">Vision code</a><a href="https://github.com/cemanst/rbkairos_etf_services">ROS services</a></div>
+  </div>
+</div>
+<div class="video"><iframe loading="lazy" title="Edge Robotics video presentation" src="https://www.youtube-nocookie.com/embed/P250DBi1fgQ" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="small"><a href="https://www.youtube.com/watch?v=P250DBi1fgQ">Watch the presentation on YouTube</a></p>
+</section>
+<section class="shell project" id="robo-router">
+<div class="project-head"><div><p class="label">BioSense Institute, Novi Sad, Serbia</p><h2>Robo Router</h2></div><div><p>Plan a route for the BioSense FlexiGroBots sampling robot. With a finite battery, lowering estimated travel time helps the robot complete more of its sampling mission.</p><p>I implemented four optimization heuristics and compared them against a Greedy route: adaptive large neighborhood search (ALNS), variable neighborhood search (VNS), ant colony optimization (ACO), and a genetic algorithm (GA).</p><div class="links"><a href="benchmark.html">View benchmark presentation</a><a href="https://github.com/cemanst/robo-router">GitHub</a><a href="https://flexigrobots-h2020.eu/blog/pilot-3-demonstrator-integration-testing-and-deployments">Robot and field pilot</a></div></div></div>
+<div class="benchmark"><div class="benchmark-head"><div><h3>Route optimization benchmark</h3></div><div class="sizes" role="group" aria-label="Number of sampling stops"><button type="button" aria-pressed="true" data-size="10">10</button><button type="button" aria-pressed="false" data-size="50">50</button><button type="button" aria-pressed="false" data-size="75">75</button><button type="button" aria-pressed="false" data-size="100">100</button></div></div>
+<table><caption id="bench-caption">Mean route cost reduction versus the Greedy algorithm</caption><thead><tr><th scope="col">Greedy</th><th scope="col">ALNS</th><th scope="col">VNS</th><th scope="col">ACO</th><th scope="col">GA</th></tr></thead><tbody><tr id="bench-values"><td>0.00%</td><td>6.03%</td><td>6.10%</td><td>6.10%</td><td>6.10%</td></tr></tbody></table>
+<div class="plots"><figure><a id="convergence-link" href="assets/convergence-10.png"><img id="convergence" src="assets/convergence-10.png" alt="Search convergence for five route planners on a 10-stop instance" loading="lazy"></a></figure><figure><a id="routes-link" href="assets/routes-10.png"><img id="routes" src="assets/routes-10.png" alt="Greedy, ALNS, VNS, ACO and GA route maps for the same 10 stops" loading="lazy"></a></figure></div></div>
 </section>
 <section class="shell project" id="cradle">
 <div class="project-head">
