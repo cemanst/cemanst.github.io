@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Run the MAiRA Conveyor Simulation | Stanislav Ceman</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="shell mast"><a class="brand" href="index.html">Stanislav Ceman</a><a href="index.html#maira">Back to the project</a></header>
+<main class="shell guide">
+<p class="label">ETF MAiRA Conveyor / Local demo</p>
+<h1>Run the conveyor simulation</h1>
+<p>The GitHub repository contains the simulation code and robot description. You need Ubuntu 22.04 with ROS 2 Humble and its packages. RViz renders the mock arm. The demo runs without a physical MAiRA, a PLC, vendor drivers, or Gazebo.</p>
+<h2>1. Set up Ubuntu and ROS 2 Humble</h2>
+<p>Use an Ubuntu 22.04 desktop or Ubuntu 22.04 in WSL 2 with GUI support on Windows. Follow the ROS installation guide to set up the package repository and install ROS Desktop. Then run these commands inside Ubuntu.</p>
+<div class="links"><a href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html">ROS 2 Humble installation</a><a href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps">Windows GUI support</a></div>
+<pre><code>sudo apt update
+sudo apt install git ros-dev-tools ros-humble-moveit \
+  ros-humble-ros2-control ros-humble-ros2-controllers
+# Skip init if rosdep is already initialized.
+sudo rosdep init
+rosdep update</code></pre>
+<h2>2. Build only the simulation packages</h2>
+<pre><code>cd ~
+git clone https://github.com/cemanst/etf_maira_conveyor.git
+cd ~/etf_maira_conveyor/ros2_ws
+source /opt/ros/humble/setup.bash
+rosdep install --from-paths \
+  src/neura_ros2/neura_robot_description \
+  src/neura_ros2/moveit_maira7m --ignore-src -r -y
+colcon build --base-paths \
+  src/neura_ros2/neura_robot_description \
+  src/neura_ros2/moveit_maira7m \
+  --packages-up-to moveit_maira7m
+source install/setup.bash</code></pre>
+<h2>3. Launch RViz and run one pick</h2>
+<p>In the same terminal, start the simulation and wait for <code>Conveyor collision geometry installed</code>.</p>
+<pre><code>ros2 launch moveit_maira7m conveyor_world.launch.py</code></pre>
+<p>In a second Ubuntu terminal, set the belt to 0.05 m/s and trigger a pick. Start recording before calling the service.</p>
+<pre><code>source /opt/ros/humble/setup.bash
+source ~/etf_maira_conveyor/ros2_ws/install/setup.bash
+ros2 param set /conveyor_world speed 0.05
+ros2 service call /conveyor_world/run std_srvs/srv/Trigger '{}'</code></pre>
+<h2>4. Show the hand trajectory</h2>
+<ol>
+<li><a href="assets/maira_flange_trail.py" download>Download the optional flange trail script</a> and save it to your Ubuntu home directory. On Windows, you can copy the download from <code>/mnt/c/Users/&lt;Windows user&gt;/Downloads/</code>.</li>
+<li>Run the commands below in a third Ubuntu terminal before triggering the pick.</li>
+<li>In RViz, set <strong>Fixed Frame</strong> to <code>maira7M_root_link</code>. In Displays, choose <strong>Add → By display type → Marker</strong> and set its topic to <code>/maira/flange_trail</code>.</li>
+<li>Frame the whole belt and arm, then record one run from the approach through the lift. Restart the trail script for a clean take.</li>
+</ol>
+<pre><code>source /opt/ros/humble/setup.bash
+source ~/etf_maira_conveyor/ros2_ws/install/setup.bash
+python3 ~/maira_flange_trail.py</code></pre>
+<p><a href="https://github.com/cemanst/etf_maira_conveyor/blob/main/ros2_ws/src/neura_ros2/moveit_maira7m/CONVEYOR_WORLD.md">Repository launch notes and troubleshooting</a></p>
+</main></body></html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Research portfolio of Stanislav Ceman, featuring robotics, edge AI, radar and wireless research."><title>Stanislav Ceman | Research Portfolio</title><link rel="stylesheet" href="style.css"><script defer src="site.js"></script></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="shell mast"><a class="brand" href="./">Stanislav Ceman</a><nav aria-label="Main"><a href="#projects">Projects</a><a href="https://github.com/cemanst">GitHub</a></nav></header>
+<main id="main">
+<section class="shell hero" id="projects">
+<div class="hero-copy">
+  <h1>Stanislav Ceman<br><span>Research portfolio</span></h1>
+  <p>I’m a second-year master’s student in mechatronics, machine vision, and AI at Université Paris-Saclay. I earned my bachelor’s in electrical engineering at the University of Belgrade, specializing in signals and systems. My robotics research has taken me from field robot routing to edge vision and manipulation.</p>
+  <p>I’m an avid reader of research on physical AI and inference optimization, especially world models, vision-language-action models, and lower-power robotics. Additionally, I’m a fan of <a href="https://github.com/cemanst">open source</a>.</p>
+</div>
+<figure class="hero-photo"><img src="assets/gari.jpg" alt="BioSense AgRobot Gari during the FlexiGroBots field pilot" fetchpriority="high"><figcaption>BioSense AgRobot Gari · FlexiGroBots field pilot</figcaption></figure>
+</section>
+<nav class="index shell" aria-label="Project index"><a href="#robo-router"><span>01</span> Robo Router</a><a href="#edge"><span>02</span> Edge Robotics</a><a href="#maira"><span>03</span> MAiRA Conveyor</a><a href="#cradle"><span>04</span> CRADLE</a><a href="#winlab"><span>05</span> WINLAB</a></nav>
+<section class="shell current-project" aria-labelledby="current-project-title">
+  <div><p class="label">In progress</p><h2 id="current-project-title">Transformable wheel-leg robot</h2></div>
+  <div>
+    <p>Our team is developing a transformable wheel-leg robot end to end, from the wheel-leg mechanism, actuators, LiDAR, and motion sensors to the controller that decides when to roll or step over obstacles. We plan to train a world-model-based controller in MuJoCo, deploy it on the physical robot, and use logged sensor and actuator data to adapt it to real-world dynamics. We’ll benchmark the learned controller against a hand-coded switching policy on the same obstacle courses.</p>
+    <div class="links"><a href="https://github.com/cemanst/transformable-wheel-leg-robot">Project on GitHub</a></div>
+  </div>
+</section>
+<section class="shell project" id="robo-router">
+<div class="project-head"><div><p class="label">BioSense Institute, Novi Sad, Serbia</p><h2>Robo Router</h2></div><div><p>Plan a route for the BioSense FlexiGroBots sampling robot. With a finite battery, lowering estimated travel time helps the robot complete more of its sampling mission.</p><p>I implemented four optimization heuristics and compared them against a Greedy route: adaptive large neighborhood search (ALNS), variable neighborhood search (VNS), ant colony optimization (ACO), and a genetic algorithm (GA).</p><div class="links"><a href="benchmark.html">View benchmark presentation</a><a href="https://github.com/cemanst/robo-router">GitHub</a><a href="https://flexigrobots-h2020.eu/blog/pilot-3-demonstrator-integration-testing-and-deployments">Robot and field pilot</a></div></div></div>
+<div class="benchmark"><div class="benchmark-head"><div><h3>Route optimization benchmark</h3></div><div class="sizes" role="group" aria-label="Number of sampling stops"><button type="button" aria-pressed="true" data-size="10">10</button><button type="button" aria-pressed="false" data-size="50">50</button><button type="button" aria-pressed="false" data-size="75">75</button><button type="button" aria-pressed="false" data-size="100">100</button></div></div>
+<table><caption id="bench-caption">Mean route cost reduction versus the Greedy algorithm</caption><thead><tr><th scope="col">Greedy</th><th scope="col">ALNS</th><th scope="col">VNS</th><th scope="col">ACO</th><th scope="col">GA</th></tr></thead><tbody><tr id="bench-values"><td>0.00%</td><td>6.03%</td><td>6.10%</td><td>6.10%</td><td>6.10%</td></tr></tbody></table>
+<div class="plots"><figure><a id="convergence-link" href="assets/convergence-10.png"><img id="convergence" src="assets/convergence-10.png" alt="Search convergence for five route planners on a 10-stop instance" loading="lazy"></a></figure><figure><a id="routes-link" href="assets/routes-10.png"><img id="routes" src="assets/routes-10.png" alt="Greedy, ALNS, VNS, ACO and GA route maps for the same 10 stops" loading="lazy"></a></figure></div></div>
+</section>
+<section class="shell project" id="edge">
+<div class="project-head">
+  <div><p class="label">ETF Palace of Science, Belgrade, Serbia</p><h2>Edge Robotics</h2></div>
+  <div>
+    <p>I built an end-to-end fruit detection and grasping system for the RB-Kairos mobile manipulator, from RealSense RGB-D images to a physical pick with the Franka Emika FR3 arm.</p>
+    <p>I wrote CUDA GPU kernel code and optimized YOLOv5n inference with TensorRT on the NVIDIA Jetson Nano. I calibrated the camera relative to the arm and combined object detections with depth to estimate each fruit’s 3D position.</p>
+    <p>I connected perception and manipulation through ROS topics and services, then used MoveIt to plan and execute arm motion to the grasp poses. MoveIt handled the inverse kinematics for those pose targets.</p>
+    <p>I’m the first author of <cite>Architecture and Design of an Edge GPU System for Autonomous Perception of Mobile Robots in Precision Agriculture</cite>, published at the 13th IcETRAN conference in 2026.</p>
+    <div class="links"><a href="assets/edge-robotics-icetran-2026.pdf">Read the paper (author PDF)</a><a href="https://www.conf.etran.rs/conference-program/%D1%80%D0%BE-roi-2/">Conference entry</a><a href="https://github.com/cemanst/rbkairos_etf_vision">Vision code</a><a href="https://github.com/cemanst/rbkairos_etf_services">ROS services</a></div>
+  </div>
+</div>
+<div class="video"><iframe loading="lazy" title="Edge Robotics video presentation" src="https://www.youtube-nocookie.com/embed/P250DBi1fgQ" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="small"><a href="https://www.youtube.com/watch?v=P250DBi1fgQ">Watch the presentation on YouTube</a></p>
+</section>
+<section class="shell project" id="maira">
+<div class="project-head">
+  <div><p class="label">ETF Palace of Science, Belgrade, Serbia</p><h2>MAiRA Conveyor</h2></div>
+  <div>
+    <p>I developed a conveyor-picking system around a seven-degree-of-freedom NEURA MAiRA-M arm, which I controlled through ROS 2. I configured the physical conveyor’s PLC in Schneider EcoStruxure Machine Expert and used OPC UA to send start, stop, and speed commands to its Altivar 320 motor drive.</p>
+    <p>The picking design starts with a camera locating the object upstream. The planner uses belt speed to predict its position, then adapts <a href="https://doi.org/10.1155/2022/5349426">Wang et al.’s pyramid-shaped search</a> to find a point the arm and object can reach at the same time. MoveIt computes the arm motion, and the RViz demo shows the arm matching the belt speed, grasping, and lifting the object.</p>
+    <div class="links"><a href="maira.html">Run the simulation</a><a href="https://github.com/cemanst/etf_maira_conveyor">GitHub</a></div>
+  </div>
+</div>
+<figure class="simulation">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="assets/maira-simulation-still.jpg">
+    <img src="assets/maira-simulation.gif" width="960" height="614" alt="RViz recording of the MAiRA arm intercepting, grasping, and lifting a cube from a moving conveyor" loading="lazy">
+  </picture>
+  <figcaption>Full pick cycle in MoveIt and RViz</figcaption>
+</figure>
+</section>
+<section class="shell project" id="cradle">
+<div class="project-head">
+  <div><p class="label">SPSC Lab, Graz, Austria</p><h2>CRADLE</h2></div>
+  <div>
+    <p>I adapted conformal risk control to an automotive radar CNN that denoises range–Doppler maps using separate real and imaginary channels. After denoising, I treated the fraction of reference targets missed by the detector as the calibration loss. A lower detection threshold retains more returns and can only reduce misses. On held-out radar data, conformal calibration applies a finite-sample correction to choose a threshold that bounds the expected missed-target rate at 10% under the framework’s assumptions.</p>
+    <div class="links"><a href="https://arxiv.org/abs/2208.02814">Conformal risk control paper</a><a href="https://ml4ad.github.io/files/papers/CNNs%20for%20Interference%20Mitigation%20and%20Denoising%20in%20Automotive%20Radar%20Using%20Real-World%20Data.pdf">Radar CNN paper</a></div>
+  </div>
+</div>
+<div class="cradle">
+  <figure><a href="assets/radar-range-doppler.png"><img src="assets/radar-range-doppler.png" alt="Three range–Doppler maps showing a radar snapshot with simulated interference, the clean reference, and CNN mitigation" loading="lazy"></a><figcaption>Radar snapshot before and after mitigation · Rock et al., Fig. 7</figcaption></figure>
+  <figure><a href="assets/radar-cnn-architecture.png"><img src="assets/radar-cnn-architecture.png" alt="Convolutional layers mapping a two-channel complex radar input to a two-channel denoised output" loading="lazy"></a><figcaption>Denoising CNN architecture · Rock et al., Fig. 2</figcaption></figure>
+</div>
+</section>
+<section class="shell project" id="winlab">
+<div class="project-head"><div><p class="label">WINLAB, Rutgers, NJ, USA</p><h2>Evaluating 5G/NextG Wireless</h2></div><div><p>I worked on autonomous RF activity sensing for a team project on end-to-end 5G and O-RAN. My focus was energy detection in GNU Radio and channel occupancy analysis with NG-Scope.</p><div class="links"><a href="https://www.youtube.com/watch?v=orcctAo1xWI">Final presentation video</a><a href="https://www.orbit-lab.org/raw-attachment/wiki/Other/Summer/2023/OH2023/S02.pdf">Final slides</a><a href="https://www.orbit-lab.org/wiki/Other/Summer/2023/5G6G">WINLAB project page</a></div></div></div>
+</section>
+</main>
+<footer class="shell mast"><a class="brand" href="./">Stanislav Ceman</a><a href="https://github.com/cemanst">GitHub</a></footer>
+</body></html>
